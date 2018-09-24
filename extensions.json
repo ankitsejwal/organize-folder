@@ -1,0 +1,13 @@
+{
+    "images" : ["jpg", "jpeg", "png", "gif", "eps"],
+    "videos" : ["mp4", "mkv"],
+    "music": ["mp4", "m4a"],
+    "documents": ["xlsx", "csv", "docx", "doc", "docs", "xls", "pdf", "ppt", "pptx", "ppsx"],
+    "txt": ["txt", "rtf"],
+    "zip": ["zip", "rar", "cpgz", "gz"],
+    "fonts": ["ttf", "otf"],
+    "adobe": ["ai", "psd", "xd", "sketch"],
+    "executable": ["dmg", "exe", "deb", "pkg"],
+    "extras": ["ics"],
+    "programming": ["html", "js", "css", "py", "java", "xml", "json", "hex"]
+}
