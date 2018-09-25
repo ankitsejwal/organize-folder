@@ -4,7 +4,7 @@ class Organize:
     def __init__(self, folder='Downloads'):
         self.folder = self.get_folder_path(folder)
         self.json = self.load_json()
-        os.chdir(self.folder)
+        self.cwd = self.folder
 
     
     def get_folder_path(self, folder):
@@ -18,7 +18,6 @@ class Organize:
 
 
     def execute(self):
-        
         print(f'\nWorking in directory: {self.folder}\n')
         files = os.listdir(self.folder)
         
@@ -28,9 +27,12 @@ class Organize:
             
             if folder is not None:
                 print(f'{folder.upper()} <--- {file}')
-                if not os.path.isdir(folder):
-                    folder = folder.upper()
-                    os.mkdir(folder)
+                folder = folder.upper()
+                file = os.path.join(self.folder, file)
+                new_folder = os.path.join(self.folder, folder)
+                print(f"new folder: {new_folder}")
+                if not os.path.isdir(new_folder):
+                    os.mkdir(new_folder)
                 self.move(file, folder)
 
         print(f'\nProcess complete.\n')
@@ -44,6 +46,8 @@ class Organize:
 
     def move(self, file, folder):
         folder = folder.upper()
+        folder = os.path.join(self.folder, folder)
+        file = os.path.join(folder, file)
         shutil.move(file, folder)
 
 
@@ -52,10 +56,10 @@ if __name__ == '__main__':
     arguments = sys.argv
     try:
         if len(arguments) > 1:
-            directory = arguments[1]
-            process = Organize(directory)
+            for argument in arguments[1:]:
+                # print(os.getcwd())
+                Organize(argument).execute()
         else:
-            process = Organize()
-    except FileNotFoundError:
-        sys.exit('No such directory found.')
-    process.execute()
+            Organize().execute()
+    except FileNotFoundError as err:
+        sys.exit(f'No such directory found. {err}')
