@@ -4,20 +4,22 @@ class Organize:
     def __init__(self, folder='Downloads'):
         self.folder = self.get_folder_path(folder)
         self.json = self.load_json()
-        self.cwd = self.folder
 
     
     def get_folder_path(self, folder):
-        path = '~/' + folder
+        ''' Generate folder path '''
+        path = os.path.join('~', folder)
         return os.path.expanduser(path)
 
 
     def load_json(self):
+        ''' Load json file '''
         extension_file = open('extensions.json', 'r')
         return json.load(extension_file)
 
 
     def execute(self):
+        ''' Execute main flow of program '''
         print(f'\nWorking in directory: {self.folder}\n')
         files = os.listdir(self.folder)
         
@@ -30,7 +32,6 @@ class Organize:
                 folder = folder.upper()
                 file = os.path.join(self.folder, file)
                 new_folder = os.path.join(self.folder, folder)
-                print(f"new folder: {new_folder}")
                 if not os.path.isdir(new_folder):
                     os.mkdir(new_folder)
                 self.move(file, folder)
@@ -39,12 +40,14 @@ class Organize:
 
 
     def map_folder(self, ext):
+        ''' Compare file extensions with extensions present in json file '''
         for folder, extensions in self.json.items():
             if ext.lower() in extensions:
                 return folder
 
 
     def move(self, file, folder):
+        ''' Move files to a folder '''
         folder = folder.upper()
         folder = os.path.join(self.folder, folder)
         file = os.path.join(folder, file)
