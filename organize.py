@@ -19,6 +19,7 @@ class Organize:
 
     def execute(self):
         
+        print(f'\nWorking in directory: {self.folder}\n')
         files = os.listdir(self.folder)
         
         for file in files:
@@ -26,11 +27,13 @@ class Organize:
             folder = self.map_folder(extension[1:])     # [1:] removing . from extension like .mp4
             
             if folder is not None:
-                print(f'{folder} <--- {file}')
+                print(f'{folder.upper()} <--- {file}')
                 if not os.path.isdir(folder):
                     folder = folder.upper()
                     os.mkdir(folder)
                 self.move(file, folder)
+
+        print(f'\nProcess complete.\n')
 
 
     def map_folder(self, ext):
@@ -46,5 +49,13 @@ class Organize:
 
 if __name__ == '__main__':
 
-    process = Organize()
+    arguments = sys.argv
+    try:
+        if len(arguments) > 1:
+            directory = arguments[1]
+            process = Organize(directory)
+        else:
+            process = Organize()
+    except FileNotFoundError:
+        sys.exit('No such directory found.')
     process.execute()
