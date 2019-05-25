@@ -1,5 +1,8 @@
 import os, sys, json, shutil
 
+# change working directory
+os.chdir(os.path.dirname(__file__))
+
 class Organize:
     def __init__(self, folder='Downloads'):
         self.folder = self.get_folder_path(folder)
@@ -58,6 +61,7 @@ class Organize:
             print(f"Replacing old file >>> {err}")
             shutil.copy(file, folder)               # copy file instead of moving
             os.remove(file)                         # remove copied file
+
 
 if __name__ == '__main__':
 
