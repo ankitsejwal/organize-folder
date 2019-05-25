@@ -4,10 +4,13 @@
     "music": ["mp4", "m4a", "flac", "wav"],
     "documents": ["xlsx", "csv", "docx", "doc", "docs", "xls", "pdf", "ppt", "pptx", "ppsx"],
     "txt": ["txt", "rtf"],
-    "zip": ["zip", "rar", "cpgz", "gz"],
+    "zip": ["zip", "rar", "cpgz", "gz", "xz", "bz2"],
     "fonts": ["ttf", "otf"],
     "adobe": ["ai", "psd", "xd", "sketch"],
     "executable": ["dmg", "exe", "deb", "pkg"],
     "extras": ["ics", "dll"],
-    "programming": ["html", "js", "css", "py", "java", "xml", "json", "hex"]
+    "programming": ["html", "js", "css", "py", "java", "xml", "json", "hex"],
+    "torrent":["torrent"],
+    "3D Print":["gcode", "stl", "f3d", "curaprofile"],
+    "ebook":["epub"]
 }
