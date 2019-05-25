@@ -51,8 +51,13 @@ class Organize:
         folder = folder.upper()
         folder = os.path.join(self.folder, folder)
         file = os.path.join(folder, file)
-        shutil.move(file, folder)
-
+        try:
+            shutil.move(file, folder)
+        except shutil.Error as err:
+            # handle file already exist error
+            print(f"Replacing old file >>> {err}")
+            shutil.copy(file, folder)               # copy file instead of moving
+            os.remove(file)                         # remove copied file
 
 if __name__ == '__main__':
 
