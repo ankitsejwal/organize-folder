@@ -5,7 +5,7 @@ This software organizes the Downloads folder (or any folder) by moving files in 
 
 ### Requirements
 * Python 3
- > *Recommended python version > 3.7*
+ > *Recommended python version >= 3.7*
 
 
 ### How to Install
@@ -24,6 +24,10 @@ This software organizes the Downloads folder (or any folder) by moving files in 
  $ organize
  $ organize ~/Downloads
  
- # to organize any folder by providing path
+ # to organize any folder provide a path
  $ organize path/to/folder
  ```
+
+### Pull Request 
+Ask for a new file extension through creating an Issue or
+Edit extensions.json and send a pull request :v:
